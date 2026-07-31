@@ -1,10 +1,10 @@
 [project]
-name = "{{ project_slug }}"
+name = "python-playwright"
 version = "0.1.0"
-description = "{{ project_name }} — Playwright + pytest + Allure UI test automation"
+description = "Playwright + pytest + Allure UI test automation"
 readme = "README.md"
-requires-python = ">= {{ python_version }}"
-authors = [{ name = "{{ author_name }}", email = "{{ author_email }}" }]
+requires-python = ">=3.12"
+authors = [{ name = "Your Name", email = "you@example.com" }]
 license = { text = "MIT" }
 
 dependencies = [
@@ -28,7 +28,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["{{ project_slug }}"]
+packages = ["python_playwright"]
 
 [tool.pytest.ini_options]
 minversion = "8.0"
@@ -54,9 +54,9 @@ filterwarnings = [
 # Used by pytest-playwright; override via CLI or env when needed.
 
 [tool.ruff]
-target-version = "py{{ python_version.replace('.', '')[:3] }}"
+target-version = "py312"
 line-length = 88
-src = ["{{ project_slug }}", "tests"]
+src = ["python_playwright", "tests"]
 
 [tool.ruff.lint]
 select = [
@@ -75,7 +75,7 @@ ignore = [
 ]
 
 [tool.ruff.lint.isort]
-known-first-party = ["{{ project_slug }}"]
+known-first-party = ["python_playwright"]
 
 [tool.ruff.format]
 quote-style = "double"

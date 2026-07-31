@@ -1,7 +1,7 @@
 import allure
 from playwright.sync_api import Page, expect
 
-from {{ project_slug }}.pages.base_page import BasePage
+from python_playwright.pages.base_page import BasePage
 
 
 class DuckDuckGoPage(BasePage):

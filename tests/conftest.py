@@ -1,8 +1,8 @@
 import pytest
 from playwright.sync_api import Page
 
-from {{ project_slug }}.config.settings import settings
-from {{ project_slug }}.support.allure_helpers import attach_failure_artifacts
+from python_playwright.config.settings import settings
+from python_playwright.support.allure_helpers import attach_failure_artifacts
 
 
 @pytest.fixture(scope="session")

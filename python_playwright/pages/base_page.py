@@ -1,6 +1,6 @@
 from playwright.sync_api import Locator, Page, expect
 
-from {{ project_slug }}.config.settings import settings
+from python_playwright.config.settings import settings
 
 
 class BasePage:

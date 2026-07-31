@@ -2,7 +2,7 @@ import allure
 import pytest
 from playwright.sync_api import Page, expect
 
-from {{ project_slug }}.pages.playwright_docs_page import PlaywrightDocsPage
+from python_playwright.pages.playwright_docs_page import PlaywrightDocsPage
 
 
 @allure.feature("Documentation")

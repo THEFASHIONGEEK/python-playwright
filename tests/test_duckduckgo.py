@@ -2,7 +2,7 @@ import allure
 import pytest
 from playwright.sync_api import Page, expect
 
-from {{ project_slug }}.pages.duckduckgo_page import DuckDuckGoPage
+from python_playwright.pages.duckduckgo_page import DuckDuckGoPage
 
 
 @allure.feature("Search")

@@ -29,7 +29,7 @@ cp config.local.env.example config.local.env
 
 - [tests/conftest.py](tests/conftest.py) contains shared Playwright and Allure fixtures
 - [tests/test_duckduckgo.py](tests/test_duckduckgo.py) and [tests/test_playwright_docs.py](tests/test_playwright_docs.py) are example tests
-- [{{project_slug}}](%7B%7Bproject_slug%7D%7D) contains the package code, including config, page objects, and support helpers
+- [python_playwright](python_playwright) contains the package code, including config, page objects, and support helpers
 - [run](run) contains shell scripts for common workflows
 
 ## Configuration
