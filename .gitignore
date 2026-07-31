@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.venv/
+.python-version.local
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+allure-results/
+allure-report/
+
+# Tooling
+.mypy_cache/
+.ruff_cache/
+
+# Environment
+.env
+config.local.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Playwright
+playwright-report/
+test-results/
+blob-report/

@@ -1,0 +1,164 @@
+# Playwright Python Test Template
+
+A production-ready [Copier](https://copier.readthedocs.io/) template for web UI test automation with **Playwright**, **pytest**, **Allure**, **Ruff**, and **uv**.
+
+Inspired by the project structure and developer experience of:
+
+- [fastapi/full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
+- [yashaka/python-web-test](https://github.com/yashaka/python-web-test)
+
+## Features
+
+- **Playwright** browser automation with `pytest-playwright`
+- **pytest** test runner with markers, parallel execution (`pytest-xdist`), and flaky-test reruns (`pytest-rerunfailures`)
+- **Allure** reporting with screenshots and page source on failure
+- **Ruff** for linting and formatting
+- **uv** for fast, reproducible dependency management
+- **Pydantic Settings** for environment-based configuration (`local` / `prod`)
+- **Page Object Model** examples (and a straightforward style example)
+- **GitHub Actions** CI pipeline
+- **pre-commit** hooks
+- Shell scripts in `run/` for common workflows
+
+## Prerequisites
+
+- [uv](https://docs.astral.sh/uv/)
+- [Copier](https://copier.readthedocs.io/) (`uv tool install copier`)
+- [Allure CLI](https://docs.qameta.io/allure/) (optional, for local HTML reports)
+
+## Generate a New Project
+
+```bash
+copier copy gh:your-org/playwright-python my-product-tests
+cd my-product-tests
+```
+
+Or from a local clone of this template:
+
+```bash
+copier copy /path/to/playwright-python my-product-tests
+cd my-product-tests
+```
+
+Copier will prompt for:
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `project_name` | Human-readable project name | Playwright Test Project |
+| `project_slug` | Python package name (snake_case) | playwright_test |
+| `author_name` | Author for `pyproject.toml` | Your Name |
+| `author_email` | Email for `pyproject.toml` | you@example.com |
+| `python_version` | Python version | 3.12 |
+| `base_url` | Default base URL for tests | (empty) |
+
+After generation, Copier runs `uv sync` and `playwright install --with-deps` automatically.
+
+## Quick Start
+
+```bash
+cp config.local.env.example config.local.env
+./run/tests_smoke.sh
+./run/tests_and_allure_report.sh
+```
+
+## Project Layout
+
+```text
+{{ project_slug }}/
+  config/          # Pydantic settings (local/prod env files)
+  pages/           # Page Object Model
+  support/         # Allure helpers and shared utilities
+tests/
+  conftest.py      # Playwright + Allure fixtures and hooks
+  test_*.py        # Example tests
+run/               # Helper shell scripts
+config.local.env.example
+config.prod.env
+pyproject.toml
+```
+
+## Configuration
+
+Settings are loaded from `config.{context}.env` files and environment variables.
+
+Copy the example file for local development:
+
+```bash
+cp config.local.env.example config.local.env
+```
+
+Key settings:
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `CONTEXT` | `local` or `prod` | `local` |
+| `BASE_URL` | Base URL for relative navigation | empty |
+| `HEADLESS` | Run browsers headless | `false` (local) |
+| `BROWSER` | `chromium`, `firefox`, or `webkit` | `chromium` |
+| `TIMEOUT_MS` | Default timeout in milliseconds | `30000` |
+| `VIEWPORT_WIDTH` / `VIEWPORT_HEIGHT` | Browser viewport | `1440` x `900` |
+
+Inspect resolved settings:
+
+```bash
+uv run python -m {{ project_slug }}.config.settings
+```
+
+## Running Tests
+
+```bash
+# All tests
+./run/tests.sh
+
+# Smoke suite only
+./run/tests.sh -m smoke
+
+# Parallel execution
+./run/tests.sh -n auto
+
+# Specific browser
+./run/tests.sh --browser firefox
+
+# With reruns on failure
+./run/tests.sh --reruns 2
+```
+
+## Linting and Formatting
+
+```bash
+./run/lint.sh
+
+# Or directly
+uv run ruff check --fix .
+uv run ruff format .
+uv run pre-commit install
+```
+
+## Allure Reports
+
+Tests write results to `allure-results/`. View the report:
+
+```bash
+allure serve allure-results
+```
+
+Or use the helper script:
+
+```bash
+./run/tests_and_allure_report.sh
+```
+
+## CI
+
+GitHub Actions runs Ruff checks and smoke tests on push/PR. Allure results are uploaded as artifacts.
+
+## Customization Tips
+
+1. Rename or extend `{{ project_slug }}/pages/` with your application page objects.
+2. Add markers in `pyproject.toml` under `[tool.pytest.ini_options]`.
+3. Tune `config.prod.env` for CI and remote environments.
+4. Keep example tests while bootstrapping, then replace them with your own suites.
+
+## License
+
+MIT
