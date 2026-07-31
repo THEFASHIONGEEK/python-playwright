@@ -2,7 +2,6 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 
-from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 EnvContext = Literal["local", "prod"]
@@ -28,7 +27,7 @@ class Settings(BaseSettings):
     )
 
     context: EnvContext = "local"
-    base_url: str = "{{ base_url }}"
+    base_url: str = ""
     headless: bool = False
     browser: BrowserName = "chromium"
     timeout_ms: int = 30_000
@@ -40,7 +39,6 @@ class Settings(BaseSettings):
     video: VideoMode = "off"
     parallel_workers: str = "auto"
     reruns: int = 0
-    author: str = Field(default="{{ author_name }}")
 
     @classmethod
     def in_context(cls, env: EnvContext | None = None) -> "Settings":

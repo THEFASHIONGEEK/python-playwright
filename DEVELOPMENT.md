@@ -1,24 +1,31 @@
-# Copier template: Playwright Python
+# Development
 
-This repository is a [Copier](https://copier.readthedocs.io/) template — not a runnable test project on its own.
+Contributor notes for this Playwright Python test automation project.
 
-## Use the template
+## Setup
 
 ```bash
-uv tool install copier
-copier copy /path/to/playwright-python my-product-tests
-cd my-product-tests
+uv sync
+uv run playwright install --with-deps
 cp config.local.env.example config.local.env
 ./run/tests_smoke.sh
 ```
 
-## Validate locally
+## Validate changes
 
 ```bash
-./scripts/generate-sample.sh /tmp/playwright-test-sample
-cd /tmp/playwright-test-sample
+./run/lint.sh
 ./run/tests_smoke.sh
+./run/tests.sh
 ```
+
+## AI skills
+
+`.cursor/skills/playwright-python/` and `.claude/skills/playwright-python/` hold project-specific Playwright conventions. Update both when changing test patterns so Cursor and Claude Code stay in sync.
+
+## VS Code
+
+Commit shared files under `.vscode/` (`extensions.json`, `settings.json`, `launch.json`, `tasks.json`). `.gitignore` uses an allowlist so personal VS Code state stays local.
 
 ## Stack
 
@@ -30,4 +37,9 @@ cd /tmp/playwright-test-sample
 - GitHub Actions CI
 - pre-commit hooks
 
-See `README.md.jinja` for the documentation copied into generated projects.
+## pre-commit
+
+```bash
+uv run pre-commit install
+uv run pre-commit run --all-files
+```

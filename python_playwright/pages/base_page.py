@@ -4,7 +4,12 @@ from python_playwright.config.settings import settings
 
 
 class BasePage:
-    """Base page object with shared Playwright helpers."""
+    """Base class for the Page Object Model.
+
+    Subclasses represent one page or UI surface. They define ``path``,
+    locators in ``__init__``, action methods, and ``should_*`` assertions.
+    Tests interact only through page object methods — never raw selectors.
+    """
 
     path: str = ""
 
