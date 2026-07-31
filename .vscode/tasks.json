@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "uv sync",
+      "type": "shell",
+      "command": "uv sync",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run smoke tests",
+      "type": "shell",
+      "command": "./run/tests_smoke.sh",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run all tests",
+      "type": "shell",
+      "command": "./run/tests.sh",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Lint (Ruff)",
+      "type": "shell",
+      "command": "./run/lint.sh",
+      "group": "none",
+      "problemMatcher": []
+    },
+    {
+      "label": "Tests + Allure report",
+      "type": "shell",
+      "command": "./run/tests_and_allure_report.sh",
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}
