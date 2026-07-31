@@ -27,11 +27,8 @@ jobs:
       - name: Install dependencies
         run: uv sync --group dev
 
-      - name: Ruff check
-        run: uv run ruff check .
-
-      - name: Ruff format
-        run: uv run ruff format --check .
+      - name: Run pre-commit
+        run: uv run pre-commit run --all-files
 
   test:
     runs-on: ubuntu-latest
